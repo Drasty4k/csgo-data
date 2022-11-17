@@ -12,3 +12,8 @@ export type roundTime = {
   start: string;
   end: string;
 };
+
+export type infoMatch = {
+  teams: string;
+  dayOfMatch: string;
+};

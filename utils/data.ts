@@ -60,3 +60,31 @@ const findMatchStartIndex = (parsedData: dataObject[]) => {
 
   return firstRoundIndex;
 };
+
+export const getTeams = (parsedData: dataObject[]) => {
+  let firstTeam: string = "";
+  let secondTeam: string = "";
+
+  parsedData.map(({ info }) => {
+    const CTTeamFound = info
+      .toLowerCase()
+      .includes('matchstatus: team playing "ct":');
+    const CTTeam = info.split(": ").pop()!;
+    if (CTTeamFound) {
+      firstTeam = CTTeam;
+      return;
+    }
+
+    const TERRORISTTeamFound = info
+      .toLowerCase()
+      .includes('matchstatus: team playing "terrorist":');
+    const TERRORISTTeam = info.split(": ").pop()!;
+
+    if (TERRORISTTeamFound) {
+      secondTeam = TERRORISTTeam;
+      return;
+    }
+  });
+
+  return `${firstTeam} vs ${secondTeam}`;
+};

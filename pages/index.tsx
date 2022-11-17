@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
 import RoundsChart from "../components/rounds-chart";
-import { rounds } from "../types";
-
-type dataObject = {
-  timestamp: string;
-  info: string;
-};
+import { rounds, infoMatch, dataObject } from "../types";
 
 export default function Home() {
   const [CSdata, setCSData] = useState<dataObject[]>([]);
   const [rounds, setRounds] = useState<rounds[]>([]);
   const [averageRoundTime, setAverageRoundTime] = useState<string>("");
+  const [infoMatch, setInfoMatch] = useState<infoMatch>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +22,7 @@ export default function Home() {
       setCSData(newData.allData);
       setRounds(newData.rounds);
       setAverageRoundTime(newData.averageRoundTime);
+      setInfoMatch(newData.infoMatch);
     };
     fetchData();
     console.log("CSDATA", CSdata);
@@ -35,10 +32,8 @@ export default function Home() {
     <div className="bg-gray-600 text-white">
       <div className="container mx-auto py-5 space-y-6">
         <div className="text-center">
-          <h1 className="text-[1.7rem] font-bold">
-            NAVI GGBET vs TeamVitality
-          </h1>
-          <h3 className="text-l font-semibold">11/28/2021</h3>
+          <h1 className="text-[1.7rem] font-bold">{infoMatch?.teams}</h1>
+          <h3 className="text-l font-semibold">{infoMatch?.dayOfMatch}</h3>
         </div>
         <div className="flex justify-between">
           <Card

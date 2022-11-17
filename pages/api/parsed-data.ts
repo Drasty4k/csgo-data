@@ -2,7 +2,12 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { readFileSync } from "fs";
 import path from "path";
 
-import { dataWithRoundsOnly, parseData } from "../../utils/data";
+import {
+  dataWithRoundsOnly,
+  dayOfMatch,
+  getTeams,
+  parseData,
+} from "../../utils/data";
 import { getRoundTimeStats } from "../../utils/roundTimeStats";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -16,7 +21,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const { rounds, averageRoundTime } = getRoundTimeStats(datawithRounds);
 
-  console.log(averageRoundTime, rounds);
+  const teams = getTeams(datawithRounds);
 
-  res.status(200).json({ allData: datawithRounds, rounds, averageRoundTime });
+  const infoMatch = {
+    teams,
+    dayOfMatch,
+  };
+
+  res
+    .status(200)
+    .json({ allData: datawithRounds, rounds, averageRoundTime, infoMatch });
 }
