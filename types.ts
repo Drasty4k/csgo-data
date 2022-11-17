@@ -17,3 +17,11 @@ export type infoMatch = {
   teams: string;
   dayOfMatch: string;
 };
+
+// export type roundsInfo = {
+//   round: number;
+//   index: {
+//     start: number;
+//     end: number;
+//   };
+// };

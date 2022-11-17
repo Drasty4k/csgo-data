@@ -26,6 +26,33 @@ export const dataWithRoundsOnly = (parsedData: dataObject[]) => {
   );
 };
 
+// export const findStartAndEndRoundsIndex = (parsedData: dataObject[]) => {
+//   const roundsInfo: roundsInfo[] = [];
+//   const indexRounds = {
+//     start: 0,
+//     end: 0,
+//   };
+
+//   let roundCounter = 1;
+//   parsedData.map(({ info }, index: number) => {
+//     const hasRoundStart = info.toLowerCase().includes("round_start");
+//     if (hasRoundStart) {
+//       console.log(indexRounds);
+//       indexRounds.start = index;
+//       return;
+//     }
+
+//     const hasRoundEnd = info.toLowerCase().includes("round_end");
+//     if (hasRoundEnd) {
+//       indexRounds.end = index;
+
+//       roundsInfo.push({ round: roundCounter++, index: indexRounds });
+//     }
+//   });
+
+//   return roundsInfo;
+// };
+
 const findMatchEndIndex = (parsedData: dataObject[]) => {
   let index = parsedData.length - 1;
 

@@ -9,6 +9,7 @@ export default function Home() {
   const [averageRoundTime, setAverageRoundTime] = useState<string>("");
   const [infoMatch, setInfoMatch] = useState<infoMatch>();
   const [totalDamageOfMatch, setTotalDamageOfMatch] = useState<number>();
+  const [totalKillsOfMatch, setTotalKillsOfMatch] = useState<number>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +25,7 @@ export default function Home() {
       setAverageRoundTime(newData.averageRoundTime);
       setInfoMatch(newData.infoMatch);
       setTotalDamageOfMatch(newData.totalDamageOfMatch);
+      setTotalKillsOfMatch(newData.totalKillsOfMatch);
     };
     fetchData();
   }, []);
@@ -40,14 +42,18 @@ export default function Home() {
             title="Average Round Time"
             data={millisToMinutesAndSeconds(averageRoundTime)}
           />
-          <Card title="Total Kills" data={"0"} />
+          <Card title="Total Kills" data={String(totalKillsOfMatch)} />
           <Card title="Total bomb planted" data={"0"} />
           <Card title="Total Money Spent" data={"0"} />
           <Card title="Total Damage Done" data={String(totalDamageOfMatch)} />
         </div>
         <RoundsChart rounds={rounds} />
         {CSdata.length > 0 &&
-          CSdata.map((element, index) => <p key={index}>{element.info}</p>)}
+          CSdata.map((element, index) => (
+            <p key={index}>
+              {index} {element.info}
+            </p>
+          ))}
       </div>
     </div>
   );

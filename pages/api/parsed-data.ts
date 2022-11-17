@@ -10,6 +10,7 @@ import {
 } from "../../utils/data";
 import { getRoundTimeStats } from "../../utils/roundTimeStats";
 import { getTotalDamageOfMatch } from "../../utils/damageStats";
+import { getTotalKillsOfMatch } from "../../utils/killStats";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = readFileSync(path.join(__dirname, "data.txt"))
@@ -31,11 +32,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const totalDamageOfMatch = getTotalDamageOfMatch(datawithRounds);
 
+  const totalKillsOfMatch = getTotalKillsOfMatch(datawithRounds);
+
+  console.log(getTotalKillsOfMatch(datawithRounds));
+
   res.status(200).json({
     allData: datawithRounds,
     rounds,
     averageRoundTime,
     infoMatch,
     totalDamageOfMatch,
+    totalKillsOfMatch,
   });
 }
