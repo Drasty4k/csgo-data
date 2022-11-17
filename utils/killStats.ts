@@ -1,5 +1,3 @@
 import { dataObject } from "../types";
 
-export const getKilledInfo = (parsedData: dataObject[]) => {
-    
-}
+export const getKilledInfo = (parsedData: dataObject[]) => {};

@@ -6,7 +6,7 @@ export const parseData = (data: string[]) => {
   const parsedData: dataObject[] = [];
 
   data.map((element) => {
-    const [first, ...rest] = element.split("-")[1].split(": ");
+    const [first, ...rest] = element.split(" - ")[1].split(": ");
     const timestamp = first.trim();
     const info = rest.join(": ").trim();
     parsedData.push({
