@@ -11,6 +11,7 @@ export default function Home() {
   const [totalDamageOfMatch, setTotalDamageOfMatch] = useState<number>();
   const [totalKillsOfMatch, setTotalKillsOfMatch] = useState<number>();
   const [totalBombPlanted, setTotalBombPlanted] = useState<number>();
+  const [totalMoneySpentOfMatch, setTotalMoneySpentOfMatch] = useState<number>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,7 @@ export default function Home() {
       setTotalDamageOfMatch(newData.totalDamageOfMatch);
       setTotalKillsOfMatch(newData.totalKillsOfMatch);
       setTotalBombPlanted(newData.totalBombPlanted);
+      setTotalMoneySpentOfMatch(newData.totalMoneySpentOfMatch)
     };
     fetchData();
   }, []);
@@ -46,7 +48,7 @@ export default function Home() {
           />
           <Card title="Total Kills" data={String(totalKillsOfMatch)} />
           <Card title="Total bomb planted" data={String(totalBombPlanted)} />
-          <Card title="Total Money Spent" data={"0"} />
+          <Card title="Total Money Spent" data={`${String(totalMoneySpentOfMatch)} $`} />
           <Card title="Total Damage Done" data={String(totalDamageOfMatch)} />
         </div>
         <RoundsChart rounds={rounds} />

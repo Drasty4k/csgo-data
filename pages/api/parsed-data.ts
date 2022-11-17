@@ -12,6 +12,7 @@ import { getRoundTimeStats } from "../../utils/roundTimeStats";
 import { getTotalDamageOfMatch } from "../../utils/damageStats";
 import { getTotalKillsOfMatch } from "../../utils/killStats";
 import { getTotalBombPlanted } from "../../utils/bombStats";
+import { getTotalMoneySpentOfMatch } from "../../utils/moneyStats";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = readFileSync(path.join(__dirname, "data.txt"))
@@ -37,7 +38,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const totalBombPlanted = getTotalBombPlanted(datawithRounds);
 
-  console.log(getTotalBombPlanted(datawithRounds));
+  const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(datawithRounds)
 
   res.status(200).json({
     allData: datawithRounds,
@@ -46,6 +47,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     infoMatch,
     totalDamageOfMatch,
     totalKillsOfMatch,
-    totalBombPlanted
+    totalBombPlanted,
+    totalMoneySpentOfMatch
   });
 }
