@@ -18,14 +18,12 @@ export default function Home() {
         },
       });
       const newData = await response.json();
-      console.log(newData.allData);
       setCSData(newData.allData);
       setRounds(newData.rounds);
       setAverageRoundTime(newData.averageRoundTime);
       setInfoMatch(newData.infoMatch);
     };
     fetchData();
-    console.log("CSDATA", CSdata);
   }, []);
 
   return (
@@ -40,9 +38,10 @@ export default function Home() {
             title="Average Round Time"
             data={millisToMinutesAndSeconds(averageRoundTime)}
           />
-          <Card title="Average Round Time" data={averageRoundTime} />
-          <Card title="Average Round Time" data={averageRoundTime} />
-          <Card title="Average Round Time" data={averageRoundTime} />
+          <Card title="Total Kills" data={"0"} />
+          <Card title="Total bomb planted" data={"0"} />
+          <Card title="Total Money Spent" data={"0"} />
+          <Card title="Total Damage Done" data={"0"} />
         </div>
         <RoundsChart rounds={rounds} />
         {CSdata.length > 0 &&
