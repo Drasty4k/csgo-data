@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
 import RoundsChart from "../components/rounds-chart";
+import RoundsDamageChart from "../components/rounds-damage-chart";
 import RoundsKillsChart from "../components/rounds-kills-chart";
 import SitesBombChart from "../components/sites-bomb-chart";
 import {
@@ -78,27 +79,8 @@ export default function Home() {
         </div>
         <RoundsChart rounds={rounds} />
         <RoundsKillsChart killsPerRound={killsInfoPerRound!} />
-        <SitesBombChart bombsPlanted={totalBombPlantedOnSites!}/>
-        <div>
-          {damageDonePerRound?.map(
-            ({ round, damagePerRound, totalDamagePerRound }, index: number) => (
-              <div key={index}>
-                <p>{round}</p>
-                <p>
-                  {Object.entries(damagePerRound)?.map((element, index) => (
-                    <>
-                      <span key={index}>
-                        {element[0]}: {element[1]}
-                      </span>
-                      <br />
-                    </>
-                  ))}
-                </p>
-                <p>{totalDamagePerRound}</p>
-              </div>
-            )
-          )}
-        </div>
+        <SitesBombChart bombsPlanted={totalBombPlantedOnSites!} />
+        <RoundsDamageChart damageDonePerRound={damageDonePerRound!} />
         {CSdata.length > 0 &&
           CSdata.map((element, index) => (
             <p key={index}>
