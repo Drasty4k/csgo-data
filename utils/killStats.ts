@@ -7,7 +7,7 @@ export const getKillsInfo = (parsedData: dataObject[]) => {
   const roundsIndex = findStartAndEndRoundsIndex(parsedData);
   roundsIndex.map(({ round, index: { start, end } }) => {
     const killsPerRound: { [key: string]: number } = {};
-    let totalKillsPerRound = 0
+    let totalKillsPerRound = 0;
     for (let i = start; i < end; i++) {
       const { info } = parsedData[i];
       const foundAttack = info.toLowerCase().includes('killed "');
@@ -29,16 +29,8 @@ export const getKillsInfo = (parsedData: dataObject[]) => {
 };
 
 export const getTotalKillsOfMatch = (parsedData: dataObject[]) => {
-  let totalKills = 0;
-
-  let killCounter = 1;
-  parsedData.map(({ info }) => {
-    const foundAttack = info.toLowerCase().includes('killed "');
-
-    if (foundAttack) {
-      totalKills = killCounter++;
-    }
-  });
-
-  return totalKills;
+  return getKillsInfo(parsedData).reduce(
+    (partialSum, a) => partialSum + a.totalKillsPerRound,
+    0
+  );
 };
