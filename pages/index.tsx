@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
 import RoundsChart from "../components/rounds-chart";
-import { rounds, infoMatch, dataObject, KillsInfo } from "../types";
+import {
+  rounds,
+  infoMatch,
+  dataObject,
+  KillsInfo,
+  BombPlantedPerSite,
+} from "../types";
 
 export default function Home() {
   const [CSdata, setCSData] = useState<dataObject[]>([]);
@@ -10,7 +16,10 @@ export default function Home() {
   const [infoMatch, setInfoMatch] = useState<infoMatch>();
   const [totalDamageOfMatch, setTotalDamageOfMatch] = useState<number>();
   const [totalKillsOfMatch, setTotalKillsOfMatch] = useState<number>();
-  const [totalBombPlanted, setTotalBombPlanted] = useState<number>();
+  const [totalBombPlantedOfMatch, setTotalBombPlantedOfMatch] =
+    useState<number>();
+  const [totalBombPlantedOnSites, setTotalBombPlantedOnSites] =
+    useState<BombPlantedPerSite>();
   const [totalMoneySpentOfMatch, setTotalMoneySpentOfMatch] =
     useState<number>();
   const [killsInfoPerRound, setKillsInfoPerRound] = useState<KillsInfo[]>();
@@ -30,7 +39,8 @@ export default function Home() {
       setInfoMatch(newData.infoMatch);
       setTotalDamageOfMatch(newData.totalDamageOfMatch);
       setTotalKillsOfMatch(newData.totalKillsOfMatch);
-      setTotalBombPlanted(newData.totalBombPlanted);
+      setTotalBombPlantedOfMatch(newData.totalBombPlantedOfMatch);
+      setTotalBombPlantedOnSites(newData.totalBombPlantedOnSites);
       setTotalMoneySpentOfMatch(newData.totalMoneySpentOfMatch);
       setKillsInfoPerRound(newData.killsInfoPerRound);
     };
@@ -50,7 +60,10 @@ export default function Home() {
             data={millisToMinutesAndSeconds(averageRoundTime)}
           />
           <Card title="Total Kills" data={String(totalKillsOfMatch)} />
-          <Card title="Total bomb planted" data={String(totalBombPlanted)} />
+          <Card
+            title="Total bomb planted"
+            data={String(totalBombPlantedOfMatch)}
+          />
           <Card
             title="Total Money Spent"
             data={`${String(totalMoneySpentOfMatch)} $`}
@@ -66,8 +79,10 @@ export default function Home() {
                 <p>
                   {Object.entries(killsPerRound)?.map((element, index) => (
                     <>
-                      <span key={index}>{element[0]}: {element[1]}</span>
-                      <br/>
+                      <span key={index}>
+                        {element[0]}: {element[1]}
+                      </span>
+                      <br />
                     </>
                   ))}
                 </p>
@@ -75,6 +90,14 @@ export default function Home() {
               </div>
             )
           )}
+        </div>
+        <div>
+          <h2>Bomb Planted Per Site</h2>
+          {totalBombPlantedOnSites && Object.entries(totalBombPlantedOnSites!).map((element, index) => (
+            <p key={index}>
+              {element[0]}: {element[1]}
+            </p>
+          ))}
         </div>
         {CSdata.length > 0 &&
           CSdata.map((element, index) => (

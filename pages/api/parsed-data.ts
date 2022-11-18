@@ -12,7 +12,7 @@ import {
 import { getRoundTimeStats } from "../../utils/roundTimeStats";
 import { getTotalDamageOfMatch } from "../../utils/damageStats";
 import { getKillsInfo, getTotalKillsOfMatch } from "../../utils/killStats";
-import { getTotalBombPlanted } from "../../utils/bombStats";
+import { getTotalBombPlantedOnMatch, getTotalBombPlantedOnSites } from "../../utils/bombStats";
 import { getTotalMoneySpentOfMatch } from "../../utils/moneyStats";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -36,14 +36,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const totalDamageOfMatch = getTotalDamageOfMatch(datawithRounds);
 
   const totalKillsOfMatch = getTotalKillsOfMatch(datawithRounds);
+  const killsInfoPerRound = getKillsInfo(datawithRounds)
 
-  const totalBombPlanted = getTotalBombPlanted(datawithRounds);
+  const totalBombPlantedOfMatch = getTotalBombPlantedOnMatch(datawithRounds);
+  const totalBombPlantedOnSites = getTotalBombPlantedOnSites(datawithRounds)
 
   const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(datawithRounds)
 
-  console.log(getKillsInfo(datawithRounds))
-
-  const killsInfoPerRound = getKillsInfo(datawithRounds)
+  console.log(getTotalBombPlantedOnSites(datawithRounds))
 
   res.status(200).json({
     allData: datawithRounds,
@@ -52,7 +52,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     infoMatch,
     totalDamageOfMatch,
     totalKillsOfMatch,
-    totalBombPlanted,
+    totalBombPlantedOfMatch,
+    totalBombPlantedOnSites,
     totalMoneySpentOfMatch,
     killsInfoPerRound
   });

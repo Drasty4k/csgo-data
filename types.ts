@@ -33,3 +33,8 @@ export type KillsInfo = {
   };
   totalKillsPerRound: number;
 };
+
+export type BombPlantedPerSite = {
+  A: number;
+  B: number;
+};
