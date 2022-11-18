@@ -49,7 +49,7 @@ export const findStartAndEndRoundsIndex = (parsedData: dataObject[]) => {
 
       roundsInfo.push({
         round: roundCounter++,
-        index: indexRounds,
+        index: { start, end },
       });
     }
   });
