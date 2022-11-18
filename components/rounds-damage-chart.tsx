@@ -1,17 +1,17 @@
-import { DamageDonePerRound } from "../types";
+import { DamagePerRound } from "../types";
 
 type Props = {
-  damageDonePerRound: DamageDonePerRound[];
+  damagePerRound: DamagePerRound[];
 };
 
-const RoundsDamageChart: React.FC<Props> = ({ damageDonePerRound }) => {
+const RoundsDamageChart: React.FC<Props> = ({ damagePerRound }) => {
   return (
     <div className="bg-gray-800 rounded-3xl p-6 pb-8 text-center">
       <h2 className="text-center text-2xl text-orange-300 font-bold mb-6">
         Rounds Damage
       </h2>
       <div className="flex flex-wrap justify-center gap-6">
-        {damageDonePerRound?.map(
+        {damagePerRound?.map(
           ({ round, damagePerRound, totalDamagePerRound }, index: number) => (
             <div key={index} className="px-8">
               <p className="font-bold">Round {round}</p>

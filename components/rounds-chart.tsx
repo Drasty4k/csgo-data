@@ -1,8 +1,8 @@
 import { millisToMinutesAndSeconds } from "../pages";
-import { rounds } from "../types";
+import { TimePerRound } from "../types";
 
 type Props = {
-  rounds: rounds[];
+  rounds: TimePerRound[];
 };
 
 const RoundsChart: React.FC<Props> = ({ rounds }) => {

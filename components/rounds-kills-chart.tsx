@@ -1,7 +1,7 @@
-import { KillsInfo } from "../types";
+import { KillsPerRound } from "../types";
 
 type Props = {
-  killsPerRound: KillsInfo[];
+  killsPerRound: KillsPerRound[];
 };
 
 const RoundsKillsChart: React.FC<Props> = ({ killsPerRound }) => {

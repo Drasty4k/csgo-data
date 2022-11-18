@@ -9,7 +9,7 @@
 }
 
 .loader {
-  border-top-color: #3498db;
+  border-top-color: #eb9a46;
   -webkit-animation: spinner 1.5s linear infinite;
   animation: spinner 1.5s linear infinite;
 }
