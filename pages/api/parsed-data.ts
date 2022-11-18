@@ -5,58 +5,68 @@ import path from "path";
 import {
   dataWithRoundsOnly,
   dayOfMatch,
-  findStartAndEndRoundsIndex,
   getTeams,
   parseData,
 } from "../../utils/data";
 import { getRoundTimeStats } from "../../utils/roundTimeStats";
-import { getDamageDonePerRound, getTotalDamageOfMatch } from "../../utils/damageStats";
+import {
+  getDamageDonePerRound,
+  getTotalDamageOfMatch,
+} from "../../utils/damageStats";
 import { getKillsInfo, getTotalKillsOfMatch } from "../../utils/killStats";
-import { getTotalBombPlantedOnMatch, getTotalBombPlantedOnSites } from "../../utils/bombStats";
+import {
+  getTotalBombPlantedOnMatch,
+  getTotalBombPlantedPerSite,
+} from "../../utils/bombStats";
 import { getTotalMoneySpentOfMatch } from "../../utils/moneyStats";
+import { ResponseData } from "../../types";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
   const data = readFileSync(path.join(__dirname, "data.txt"))
     .toString()
     .split("\n");
 
-  const parsedData = parseData(data);
+  const parsedData = dataWithRoundsOnly(data);
 
-  const datawithRounds = dataWithRoundsOnly(parsedData);
+  const timeInfo = getRoundTimeStats(parsedData);
 
-  const { rounds, averageRoundTime } = getRoundTimeStats(datawithRounds);
+  const teams = getTeams(parsedData);
 
-  const teams = getTeams(datawithRounds);
-
-  const infoMatch = {
+  const matchInfo = {
     teams,
     dayOfMatch,
   };
 
-  const totalDamageOfMatch = getTotalDamageOfMatch(datawithRounds);
-  const damageDonePerRound = getDamageDonePerRound(datawithRounds)
+  const damagePerRound = getDamageDonePerRound(parsedData);
+  const totalDamageOfMatch = getTotalDamageOfMatch(parsedData);
+  const damageInfo = {
+    damagePerRound,
+    totalDamageOfMatch,
+  };
 
-  const totalKillsOfMatch = getTotalKillsOfMatch(datawithRounds);
-  const killsInfoPerRound = getKillsInfo(datawithRounds)
+  const killsPerRound = getKillsInfo(parsedData);
+  const totalKillsOfMatch = getTotalKillsOfMatch(parsedData);
+  const killsInfo = {
+    killsPerRound,
+    totalKillsOfMatch,
+  };
 
-  const totalBombPlantedOfMatch = getTotalBombPlantedOnMatch(datawithRounds);
-  const totalBombPlantedOnSites = getTotalBombPlantedOnSites(datawithRounds)
+  const bombPlantedPerSite = getTotalBombPlantedPerSite(parsedData);
+  const totalBombPlantedOfMatch = getTotalBombPlantedOnMatch(parsedData);
+  const bombInfo = {
+    bombPlantedPerSite,
+    totalBombPlantedOfMatch,
+  };
 
-  const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(datawithRounds)
-
-  console.log(getDamageDonePerRound(datawithRounds))
+  const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(parsedData);
 
   res.status(200).json({
-    allData: datawithRounds,
-    rounds,
-    averageRoundTime,
-    infoMatch,
-    totalDamageOfMatch,
-    damageDonePerRound,
-    totalKillsOfMatch,
-    totalBombPlantedOfMatch,
-    totalBombPlantedOnSites,
+    allData: parsedData,
+    timeInfo,
+    matchInfo,
+    damageInfo,
+    killsInfo,
+    bombInfo,
     totalMoneySpentOfMatch,
-    killsInfoPerRound
   });
 }

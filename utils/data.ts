@@ -1,9 +1,9 @@
-import { dataObject, roundsInfo } from "../types";
+import { Data, roundsInfo } from "../types";
 
 export let dayOfMatch: string;
 
 export const parseData = (data: string[]) => {
-  const parsedData: dataObject[] = [];
+  const parsedData: Data[] = [];
 
   data.map((element) => {
     const [first, ...rest] = element.split(" - ")[1].split(": ");
@@ -19,14 +19,15 @@ export const parseData = (data: string[]) => {
   return parsedData;
 };
 
-export const dataWithRoundsOnly = (parsedData: dataObject[]) => {
+export const dataWithRoundsOnly = (data: string[]) => {
+  const parsedData = parseData(data);
   return parsedData.slice(
     findMatchStartIndex(parsedData),
     findMatchEndIndex(parsedData) + 1
   );
 };
 
-export const findStartAndEndRoundsIndex = (parsedData: dataObject[]) => {
+export const findStartAndEndRoundsIndex = (parsedData: Data[]) => {
   const roundsInfo: roundsInfo[] = [];
   const indexRounds = {
     start: 0,
@@ -57,7 +58,7 @@ export const findStartAndEndRoundsIndex = (parsedData: dataObject[]) => {
   return roundsInfo;
 };
 
-const findMatchEndIndex = (parsedData: dataObject[]) => {
+const findMatchEndIndex = (parsedData: Data[]) => {
   let index = parsedData.length - 1;
 
   for (index; index >= 0; index--) {
@@ -70,7 +71,7 @@ const findMatchEndIndex = (parsedData: dataObject[]) => {
   return index;
 };
 
-const findMatchStartIndex = (parsedData: dataObject[]) => {
+const findMatchStartIndex = (parsedData: Data[]) => {
   let firstRoundIndex = 0;
   let endRoundIndex: number | null = null;
 
@@ -92,7 +93,7 @@ const findMatchStartIndex = (parsedData: dataObject[]) => {
   return firstRoundIndex;
 };
 
-export const getTeams = (parsedData: dataObject[]) => {
+export const getTeams = (parsedData: Data[]) => {
   let firstTeam: string = "";
   let secondTeam: string = "";
 

@@ -1,6 +1,6 @@
-import { BombPlantedPerSite, dataObject } from "../types";
+import { BombPlantedPerSite, Data } from "../types";
 
-export const getTotalBombPlantedOnSites = (parsedData: dataObject[]) => {
+export const getTotalBombPlantedPerSite = (parsedData: Data[]) => {
   const plantsPerSite: BombPlantedPerSite = { A: 0, B: 0 };
 
   parsedData.map(({ info }) => {
@@ -20,8 +20,8 @@ export const getTotalBombPlantedOnSites = (parsedData: dataObject[]) => {
   return plantsPerSite;
 };
 
-export const getTotalBombPlantedOnMatch = (parsedData: dataObject[]) => {
-  return Object.values(getTotalBombPlantedOnSites(parsedData)).reduce(
+export const getTotalBombPlantedOnMatch = (parsedData: Data[]) => {
+  return Object.values(getTotalBombPlantedPerSite(parsedData)).reduce(
     (partialSum, a) => partialSum + a,
     0
   );

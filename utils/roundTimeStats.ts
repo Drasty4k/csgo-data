@@ -1,8 +1,8 @@
-import { dataObject, rounds, roundTime } from "../types";
+import { Data, TimePerRound, roundTime } from "../types";
 import { dayOfMatch } from "./data";
 
-export const getRoundTimeStats = (parsedData: dataObject[]) => {
-  const rounds: rounds[] = [];
+export const getRoundTimeStats = (parsedData: Data[]) => {
+  const timePerRound: TimePerRound[] = [];
   let roundTime: roundTime = {
     start: "",
     end: "",
@@ -28,14 +28,14 @@ export const getRoundTimeStats = (parsedData: dataObject[]) => {
 
       totalRoundTime += lastedTime;
 
-      rounds.push({ round: roundCounter++, lasted: lastedTime });
+      timePerRound.push({ round: roundCounter++, lasted: lastedTime });
     }
   });
 
-  const averageRoundTime = totalRoundTime / rounds.length + 1;
+  const averageRoundTime = totalRoundTime / timePerRound.length + 1;
 
   return {
-    rounds,
+    timePerRound,
     averageRoundTime,
   };
 };

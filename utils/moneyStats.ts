@@ -1,4 +1,4 @@
-import { dataObject } from "../types";
+import { Data } from "../types";
 
 // import { findStartAndEndRoundsIndex } from "./data";
 
@@ -33,7 +33,7 @@ import { dataObject } from "../types";
 //   return moneySpentPerRound;
 // };
 
-export const getTotalMoneySpentOfMatch = (parsedData: dataObject[]) => {
+export const getTotalMoneySpentOfMatch = (parsedData: Data[]) => {
   let totalMoneySpent = 0;
 
   parsedData.map(({ info }) => {

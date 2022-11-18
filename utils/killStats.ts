@@ -1,8 +1,8 @@
-import { dataObject, KillsInfo } from "../types";
+import { Data, KillsPerRound } from "../types";
 import { findStartAndEndRoundsIndex } from "./data";
 
-export const getKillsInfo = (parsedData: dataObject[]) => {
-  const killsInfo: KillsInfo[] = [];
+export const getKillsInfo = (parsedData: Data[]) => {
+  const killsInfo: KillsPerRound[] = [];
 
   const roundsIndex = findStartAndEndRoundsIndex(parsedData);
   roundsIndex.map(({ round, index: { start, end } }) => {
@@ -28,7 +28,7 @@ export const getKillsInfo = (parsedData: dataObject[]) => {
   return killsInfo;
 };
 
-export const getTotalKillsOfMatch = (parsedData: dataObject[]) => {
+export const getTotalKillsOfMatch = (parsedData: Data[]) => {
   return getKillsInfo(parsedData).reduce(
     (partialSum, a) => partialSum + a.totalKillsPerRound,
     0

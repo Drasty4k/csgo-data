@@ -1,9 +1,44 @@
-export type dataObject = {
+export type ResponseData = {
+  allData?: Data[];
+  timeInfo: TimeInfo;
+  matchInfo: MatchInfo;
+  damageInfo: DamageInfo;
+  killsInfo: KillsInfo;
+  bombInfo: BombInfo;
+  totalMoneySpentOfMatch: number;
+};
+
+type TimeInfo = {
+  timePerRound: TimePerRound[];
+  averageRoundTime: number;
+};
+
+type MatchInfo = {
+  teams: string;
+  dayOfMatch: string;
+};
+
+type DamageInfo = {
+  damagePerRound: DamagePerRound[];
+  totalDamageOfMatch: number;
+};
+
+type KillsInfo = {
+  killsPerRound: KillsPerRound[];
+  totalKillsOfMatch: number;
+};
+
+type BombInfo = {
+  bombPlantedPerSite: BombPlantedPerSite;
+  totalBombPlantedOfMatch: number;
+};
+
+export type Data = {
   timestamp: string;
   info: string;
 };
 
-export type rounds = {
+export type TimePerRound = {
   round: number;
   lasted: number;
 };
@@ -26,7 +61,7 @@ export type roundsInfo = {
   };
 };
 
-export type KillsInfo = {
+export type KillsPerRound = {
   round: number;
   killsPerRound: {
     [key: string]: number;
@@ -39,13 +74,13 @@ export type BombPlantedPerSite = {
   B: number;
 };
 
-export type DamageDonePerRound = {
+export type DamagePerRound = {
   round: number;
   damagePerRound: {
-    [key: string]: number
-  },
-  totalDamagePerRound: number
-}
+    [key: string]: number;
+  };
+  totalDamagePerRound: number;
+};
 
 // export type MoneySpent = {
 //   round: number;
