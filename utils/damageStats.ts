@@ -1,17 +1,38 @@
-import { dataObject } from "../types";
+import { DamageDonePerRound, dataObject } from "../types";
+import { findStartAndEndRoundsIndex } from "./data";
 
-export const getTotalDamageOfMatch = (parsedData: dataObject[]) => {
-    
-  let totalDamage: number = 0;
+export const getDamageDonePerRound = (parsedData: dataObject[]) => {
+  const damageDonePerRound: DamageDonePerRound[] = [];
 
-  parsedData.map(({ info }) => {
-    const foundAttack = info.toLowerCase().includes("attacked");
+  const roundsIndex = findStartAndEndRoundsIndex(parsedData);
+  roundsIndex.map(({ round, index: { start, end } }) => {
+    const damagePerRound: { [key: string]: number } = {};
+    let totalDamagePerRound = 0;
 
-    if (foundAttack) {
-      const damage = Number(info.split("(damage ")[1].split('"')[1]);
-      totalDamage += damage;
+    for (let i = start; i < end; i++) {
+      const { info } = parsedData[i];
+      const foundAttack = info.toLowerCase().includes("attacked");
+
+      if (foundAttack) {
+        const damage = Number(info.split("(damage ")[1].split('"')[1]);
+        totalDamagePerRound += damage;
+        const playerName = info.split('"')[1].split("<")[0].trim();
+        if (damagePerRound[playerName]) {
+          damagePerRound[playerName] += damage;
+        } else {
+          damagePerRound[playerName] = damage;
+        }
+      }
     }
+    damageDonePerRound.push({ round, damagePerRound, totalDamagePerRound });
   });
 
-  return totalDamage;
+  return damageDonePerRound;
+};
+
+export const getTotalDamageOfMatch = (parsedData: dataObject[]) => {
+  return getDamageDonePerRound(parsedData).reduce(
+    (partialSum, a) => partialSum + a.totalDamagePerRound,
+    0
+  );
 };

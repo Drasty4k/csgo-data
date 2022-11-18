@@ -7,6 +7,7 @@ import {
   dataObject,
   KillsInfo,
   BombPlantedPerSite,
+  DamageDonePerRound,
 } from "../types";
 
 export default function Home() {
@@ -23,6 +24,8 @@ export default function Home() {
   const [totalMoneySpentOfMatch, setTotalMoneySpentOfMatch] =
     useState<number>();
   const [killsInfoPerRound, setKillsInfoPerRound] = useState<KillsInfo[]>();
+  const [damageDonePerRound, setDamageDonePerRound] =
+    useState<DamageDonePerRound[]>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +41,7 @@ export default function Home() {
       setAverageRoundTime(newData.averageRoundTime);
       setInfoMatch(newData.infoMatch);
       setTotalDamageOfMatch(newData.totalDamageOfMatch);
+      setDamageDonePerRound(newData.damageDonePerRound);
       setTotalKillsOfMatch(newData.totalKillsOfMatch);
       setTotalBombPlantedOfMatch(newData.totalBombPlantedOfMatch);
       setTotalBombPlantedOnSites(newData.totalBombPlantedOnSites);
@@ -93,11 +97,32 @@ export default function Home() {
         </div>
         <div>
           <h2>Bomb Planted Per Site</h2>
-          {totalBombPlantedOnSites && Object.entries(totalBombPlantedOnSites!).map((element, index) => (
-            <p key={index}>
-              {element[0]}: {element[1]}
-            </p>
-          ))}
+          {totalBombPlantedOnSites &&
+            Object.entries(totalBombPlantedOnSites!).map((element, index) => (
+              <p key={index}>
+                {element[0]}: {element[1]}
+              </p>
+            ))}
+        </div>
+        <div>
+          {damageDonePerRound?.map(
+            ({ round, damagePerRound, totalDamagePerRound }, index: number) => (
+              <div key={index}>
+                <p>{round}</p>
+                <p>
+                  {Object.entries(damagePerRound)?.map((element, index) => (
+                    <>
+                      <span key={index}>
+                        {element[0]}: {element[1]}
+                      </span>
+                      <br />
+                    </>
+                  ))}
+                </p>
+                <p>{totalDamagePerRound}</p>
+              </div>
+            )
+          )}
         </div>
         {CSdata.length > 0 &&
           CSdata.map((element, index) => (

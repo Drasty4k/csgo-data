@@ -39,6 +39,14 @@ export type BombPlantedPerSite = {
   B: number;
 };
 
+export type DamageDonePerRound = {
+  round: number;
+  damagePerRound: {
+    [key: string]: number
+  },
+  totalDamagePerRound: number
+}
+
 // export type MoneySpent = {
 //   round: number;
 //   spentPerRound: {
