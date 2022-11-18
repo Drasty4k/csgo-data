@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
 import RoundsChart from "../components/rounds-chart";
+import RoundsKillsChart from "../components/rounds-kills-chart";
 import {
   rounds,
   infoMatch,
@@ -75,26 +76,7 @@ export default function Home() {
           <Card title="Total Damage Done" data={String(totalDamageOfMatch)} />
         </div>
         <RoundsChart rounds={rounds} />
-        <div>
-          {killsInfoPerRound?.map(
-            ({ round, killsPerRound, totalKillsPerRound }, index: number) => (
-              <div key={index}>
-                <p>{round}</p>
-                <p>
-                  {Object.entries(killsPerRound)?.map((element, index) => (
-                    <>
-                      <span key={index}>
-                        {element[0]}: {element[1]}
-                      </span>
-                      <br />
-                    </>
-                  ))}
-                </p>
-                <p>{totalKillsPerRound}</p>
-              </div>
-            )
-          )}
-        </div>
+        <RoundsKillsChart killsPerRound={killsInfoPerRound!} />
         <div>
           <h2>Bomb Planted Per Site</h2>
           {totalBombPlantedOnSites &&
