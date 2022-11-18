@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "../components/card";
 import RoundsChart from "../components/rounds-chart";
-import { rounds, infoMatch, dataObject } from "../types";
+import { rounds, infoMatch, dataObject, KillsInfo } from "../types";
 
 export default function Home() {
   const [CSdata, setCSData] = useState<dataObject[]>([]);
@@ -11,7 +11,9 @@ export default function Home() {
   const [totalDamageOfMatch, setTotalDamageOfMatch] = useState<number>();
   const [totalKillsOfMatch, setTotalKillsOfMatch] = useState<number>();
   const [totalBombPlanted, setTotalBombPlanted] = useState<number>();
-  const [totalMoneySpentOfMatch, setTotalMoneySpentOfMatch] = useState<number>();
+  const [totalMoneySpentOfMatch, setTotalMoneySpentOfMatch] =
+    useState<number>();
+  const [killsInfoPerRound, setKillsInfoPerRound] = useState<KillsInfo[]>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +31,8 @@ export default function Home() {
       setTotalDamageOfMatch(newData.totalDamageOfMatch);
       setTotalKillsOfMatch(newData.totalKillsOfMatch);
       setTotalBombPlanted(newData.totalBombPlanted);
-      setTotalMoneySpentOfMatch(newData.totalMoneySpentOfMatch)
+      setTotalMoneySpentOfMatch(newData.totalMoneySpentOfMatch);
+      setKillsInfoPerRound(newData.killsInfoPerRound);
     };
     fetchData();
   }, []);
@@ -48,10 +51,31 @@ export default function Home() {
           />
           <Card title="Total Kills" data={String(totalKillsOfMatch)} />
           <Card title="Total bomb planted" data={String(totalBombPlanted)} />
-          <Card title="Total Money Spent" data={`${String(totalMoneySpentOfMatch)} $`} />
+          <Card
+            title="Total Money Spent"
+            data={`${String(totalMoneySpentOfMatch)} $`}
+          />
           <Card title="Total Damage Done" data={String(totalDamageOfMatch)} />
         </div>
         <RoundsChart rounds={rounds} />
+        <div>
+          {killsInfoPerRound?.map(
+            ({ round, killsPerRound, totalKillsPerRound }, index: number) => (
+              <div key={index}>
+                <p>{round}</p>
+                <p>
+                  {Object.entries(killsPerRound)?.map((element, index) => (
+                    <>
+                      <span key={index}>{element[0]}: {element[1]}</span>
+                      <br/>
+                    </>
+                  ))}
+                </p>
+                <p>{totalKillsPerRound}</p>
+              </div>
+            )
+          )}
+        </div>
         {CSdata.length > 0 &&
           CSdata.map((element, index) => (
             <p key={index}>

@@ -25,3 +25,11 @@ export type roundsInfo = {
     end: number;
   };
 };
+
+export type KillsInfo = {
+  round: number;
+  killsPerRound: {
+    [key: string]: number;
+  };
+  totalKillsPerRound: number;
+};

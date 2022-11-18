@@ -11,7 +11,7 @@ import {
 } from "../../utils/data";
 import { getRoundTimeStats } from "../../utils/roundTimeStats";
 import { getTotalDamageOfMatch } from "../../utils/damageStats";
-import { getTotalKillsOfMatch } from "../../utils/killStats";
+import { getKillsInfo, getTotalKillsOfMatch } from "../../utils/killStats";
 import { getTotalBombPlanted } from "../../utils/bombStats";
 import { getTotalMoneySpentOfMatch } from "../../utils/moneyStats";
 
@@ -41,7 +41,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(datawithRounds)
 
-  console.log(findStartAndEndRoundsIndex(datawithRounds))
+  console.log(getKillsInfo(datawithRounds))
+
+  const killsInfoPerRound = getKillsInfo(datawithRounds)
 
   res.status(200).json({
     allData: datawithRounds,
@@ -51,6 +53,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     totalDamageOfMatch,
     totalKillsOfMatch,
     totalBombPlanted,
-    totalMoneySpentOfMatch
+    totalMoneySpentOfMatch,
+    killsInfoPerRound
   });
 }
