@@ -43,8 +43,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(datawithRounds)
 
-  console.log(getTotalBombPlantedOnSites(datawithRounds))
-
   res.status(200).json({
     allData: datawithRounds,
     rounds,

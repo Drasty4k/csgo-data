@@ -38,3 +38,12 @@ export type BombPlantedPerSite = {
   A: number;
   B: number;
 };
+
+// export type MoneySpent = {
+//   round: number;
+//   spentPerRound: {
+//     CT: number;
+//     TERRORIST: number;
+//   };
+//   totalSpentPerRound: number;
+// };
