@@ -5,6 +5,7 @@ import path from "path";
 import {
   dataWithRoundsOnly,
   dayOfMatch,
+  findStartAndEndRoundsIndex,
   getTeams,
   parseData,
 } from "../../utils/data";
@@ -39,6 +40,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const totalBombPlanted = getTotalBombPlanted(datawithRounds);
 
   const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(datawithRounds)
+
+  console.log(findStartAndEndRoundsIndex(datawithRounds))
 
   res.status(200).json({
     allData: datawithRounds,

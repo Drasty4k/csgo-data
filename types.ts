@@ -18,10 +18,10 @@ export type infoMatch = {
   dayOfMatch: string;
 };
 
-// export type roundsInfo = {
-//   round: number;
-//   index: {
-//     start: number;
-//     end: number;
-//   };
-// };
+export type roundsInfo = {
+  round: number;
+  index: {
+    start: number;
+    end: number;
+  };
+};
