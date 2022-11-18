@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import Card from "../components/card";
 import Loader from "../components/loader";
-import RoundsChart from "../components/rounds-chart";
+import RoundsTimeChart from "../components/rounds-time-chart";
 import RoundsDamageChart from "../components/rounds-damage-chart";
 import RoundsKillsChart from "../components/rounds-kills-chart";
 import SitesBombChart from "../components/sites-bomb-chart";
@@ -40,17 +40,17 @@ export default function Home() {
           />
           <Card
             title="Total Money Spent"
-            data={`${String(data?.totalMoneySpentOfMatch)} $`}
+            data={`~${String(data?.totalMoneySpentOfMatch)} $`}
           />
           <Card
             title="Total Damage Done"
             data={String(data.damageInfo.totalDamageOfMatch)}
           />
         </div>
-        <RoundsChart rounds={data.timeInfo.timePerRound} />
-        <RoundsKillsChart killsPerRound={data.killsInfo.killsPerRound!} />
-        <SitesBombChart bombsPlanted={data.bombInfo.bombPlantedPerSite!} />
-        <RoundsDamageChart damagePerRound={data.damageInfo.damagePerRound!} />
+        <RoundsTimeChart timePerRound={data.timeInfo.timePerRound} />
+        <RoundsKillsChart killsPerRound={data.killsInfo.killsPerRound} />
+        <SitesBombChart bombsPlanted={data.bombInfo.bombPlantedPerSite} />
+        <RoundsDamageChart damagePerRound={data.damageInfo.damagePerRound} />
         {data.allData!.length > 0 &&
           data.allData!.map((element, index) => (
             <p key={index}>

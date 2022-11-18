@@ -21,7 +21,7 @@ const RoundsKillsChart: React.FC<Props> = ({ killsPerRound }) => {
               <p>
                 {Object.entries(killsPerRound)?.map((element, index) => (
                   <p key={index}>
-                    {element[0]}: {element[1]}
+                    {element[0]}: <b>{element[1]}</b>
                   </p>
                 ))}
               </p>

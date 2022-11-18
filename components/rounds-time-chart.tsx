@@ -2,17 +2,17 @@ import { millisToMinutesAndSeconds } from "../pages";
 import { TimePerRound } from "../types";
 
 type Props = {
-  rounds: TimePerRound[];
+  timePerRound: TimePerRound[];
 };
 
-const RoundsChart: React.FC<Props> = ({ rounds }) => {
+const RoundsTimeChart: React.FC<Props> = ({ timePerRound }) => {
   return (
-    <div className=" bg-gray-800 rounded-3xl p-6 pb-8 ">
+    <div className=" bg-gray-800 rounded-3xl p-6 pb-8 text-center">
       <h2 className="text-center text-2xl text-orange-300 font-bold mb-6">
         Rounds Time
       </h2>
       <div className="flex flex-wrap justify-center gap-6">
-        {rounds.map(({ round, lasted }, index: number) => {
+        {timePerRound.map(({ round, lasted }, index: number) => {
           const stringRound = String(round);
           const stringLasted = millisToMinutesAndSeconds(String(lasted));
           return (
@@ -23,8 +23,10 @@ const RoundsChart: React.FC<Props> = ({ rounds }) => {
                   height: `${Number(stringLasted.split(":").join("")) / 4}px`,
                 }}
               />
-              <p className="z-20">Round {stringRound}</p>
-              <p className="z-20">Lasted {stringLasted}</p>
+              <p className="z-20 font-bold">Round {stringRound}</p>
+              <p className="z-20">
+                Lasted <b>{stringLasted}</b>
+              </p>
             </div>
           );
         })}
@@ -33,4 +35,4 @@ const RoundsChart: React.FC<Props> = ({ rounds }) => {
   );
 };
 
-export default RoundsChart;
+export default RoundsTimeChart;
