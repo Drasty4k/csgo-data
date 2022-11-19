@@ -6,6 +6,7 @@ import RoundsDamageChart from "../components/rounds-damage-chart";
 import RoundsKillsChart from "../components/rounds-kills-chart";
 import SitesBombChart from "../components/sites-bomb-chart";
 import { ResponseData } from "../types";
+import ScrollArrow from "../components/scroll-arrow";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
@@ -74,6 +75,7 @@ export default function Home() {
             </p>
           ))}
       </div>
+      <ScrollArrow />
     </div>
   );
 }
