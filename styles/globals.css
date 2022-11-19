@@ -33,3 +33,19 @@
   0% { opacity: 0; display: "block" }
   100% { opacity: 1; }
 }
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e6992d;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4b5563;
+}
