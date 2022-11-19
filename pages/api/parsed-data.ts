@@ -7,18 +7,18 @@ import {
   dayOfMatch,
   getTeams,
   parseData,
-} from "../../utils/data";
-import { getRoundTimeStats } from "../../utils/roundTimeStats";
+} from "../../models/data";
+import { getRoundTimeStats } from "../../models/roundTimeStats";
 import {
   getDamageDonePerRound,
   getTotalDamageOfMatch,
-} from "../../utils/damageStats";
-import { getKillsInfo, getTotalKillsOfMatch } from "../../utils/killStats";
+} from "../../models/damageStats";
+import { getKillsInfo, getTotalKillsOfMatch } from "../../models/killStats";
 import {
   getTotalBombPlantedOnMatch,
   getTotalBombPlantedPerSite,
-} from "../../utils/bombStats";
-import { getTotalMoneySpentOfMatch } from "../../utils/moneyStats";
+} from "../../models/bombStats";
+import { getTotalMoneySpentOfMatch } from "../../models/moneyStats";
 import { ResponseData } from "../../types";
 
 const getData = async () => {
