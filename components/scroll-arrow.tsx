@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { ArrowUpCircleIcon } from "./icons";
 
@@ -19,10 +20,11 @@ const ScrollArrow: React.FC = () => {
   window.addEventListener("scroll", checkScrollTop);
 
   return (
-    <button
+    <Link
       onClick={scrollTop}
       className="icon-appear fixed bottom-10 right-10"
       style={{ display: showScroll ? "block" : "none" }}
+      href={"/"}
     >
       <ArrowUpCircleIcon
         width={50}
@@ -30,7 +32,7 @@ const ScrollArrow: React.FC = () => {
         strokeColor="#FBA245"
         className="hover:stroke-orange-300 transition"
       />
-    </button>
+    </Link>
   );
 };
 

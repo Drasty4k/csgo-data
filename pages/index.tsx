@@ -40,7 +40,7 @@ export default function Home() {
           <Card
             title="Total bomb planted"
             idToScroll="SitesBomb"
-            data={String(data?.bombInfo.totalBombPlantedOfMatch)}
+            data={String(data.bombInfo.totalBombPlantedOfMatch)}
           />
           <Card
             title="Total Damage Done"
@@ -49,7 +49,7 @@ export default function Home() {
           />
           <Card
             title="Total Money Spent"
-            data={`~${String(data?.totalMoneySpentOfMatch)} $`}
+            data={`~${String(data.totalMoneySpentOfMatch)} $`}
           />
         </div>
         <RoundsTimeChart

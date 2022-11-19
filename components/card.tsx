@@ -9,7 +9,7 @@ type Props = {
 
 const Card: React.FC<Props> = ({ title, data, idToScroll }) => {
   return (
-    <a href={`#${idToScroll}`}>
+    <a href={idToScroll && `#${idToScroll}`}>
       <div className="relative group p-10 bg-gray-800 rounded-3xl text-center space-y-3 hover:bg-[#372f1f] transition hover:cursor-pointer">
         <h3 className="text-2xl text-orange-300 font-bold">{title}</h3>
         {!idToScroll && <Info />}
