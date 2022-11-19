@@ -8,6 +8,7 @@ import SitesBombChart from "../components/sites-bomb-chart";
 import { ResponseData } from "../types";
 import ScrollArrow from "../components/scroll-arrow";
 import Error from "../components/error";
+import Head from "next/head";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
@@ -24,6 +25,10 @@ export default function Home() {
 
   return (
     <div className="bg-gray-600 text-white">
+      <Head>
+        <title>CS:GO Data</title>
+        <meta property="og:title" content="My page title" key="title" />
+      </Head>
       <div className="container mx-auto py-5 space-y-6">
         <div className="text-center">
           <h1 className="text-[1.7rem] font-bold">{data.matchInfo.teams}</h1>
