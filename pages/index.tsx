@@ -49,7 +49,7 @@ export default function Home() {
           />
           <Card
             title="Total Money Spent"
-            data={`~${String(data.totalMoneySpentOfMatch)} $`}
+            data={`~${String(data.moneyInfo.totalMoneySpentOfMatch)} $`}
           />
         </div>
         <RoundsTimeChart

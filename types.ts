@@ -4,7 +4,7 @@ export type ResponseData = {
   damageInfo: DamageInfo;
   killsInfo: KillsInfo;
   bombInfo: BombInfo;
-  totalMoneySpentOfMatch: number;
+  moneyInfo: MoneyInfo;
 };
 
 type TimeInfo = {
@@ -30,6 +30,10 @@ type KillsInfo = {
 type BombInfo = {
   bombPlantedPerSite: BombPlantedPerSite;
   totalBombPlantedOfMatch: number;
+};
+
+type MoneyInfo = {
+  totalMoneySpentOfMatch: number;
 };
 
 export type Data = {

@@ -47,3 +47,11 @@ export const getTotalMoneySpentOfMatch = (parsedData: Data[]) => {
 
   return totalMoneySpent;
 };
+
+export const getMoneyInfo = (parsedData: Data[]) => {
+  const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(parsedData);
+
+  return  {
+    totalMoneySpentOfMatch
+  }
+}

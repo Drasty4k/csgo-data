@@ -120,3 +120,12 @@ export const getTeams = (parsedData: Data[]) => {
 
   return `${firstTeam} vs ${secondTeam}`;
 };
+
+export const getMatchInfo = (parsedData: Data[]) => {
+  const teams = getTeams(parsedData);
+
+  return {
+    teams,
+    dayOfMatch,
+  };
+};
