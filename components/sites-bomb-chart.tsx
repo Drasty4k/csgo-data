@@ -2,11 +2,12 @@ import { BombPlantedPerSite } from "../types";
 
 type Props = {
   bombsPlanted: BombPlantedPerSite;
+  id?: string;
 };
 
-const SitesBombChart: React.FC<Props> = ({ bombsPlanted }) => {
+const SitesBombChart: React.FC<Props> = ({ bombsPlanted, id }) => {
   return (
-    <div className="bg-gray-800 rounded-3xl p-6 pb-8 text-center">
+    <div id={`${id}`}  className="bg-gray-800 rounded-3xl p-6 pb-8 text-center">
       <h2 className="text-center text-2xl text-orange-300 font-bold mb-6">
         Bomb Planted Per Site
       </h2>

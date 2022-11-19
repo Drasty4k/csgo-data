@@ -3,11 +3,12 @@ import { TimePerRound } from "../types";
 
 type Props = {
   timePerRound: TimePerRound[];
+  id?: string;
 };
 
-const RoundsTimeChart: React.FC<Props> = ({ timePerRound }) => {
+const RoundsTimeChart: React.FC<Props> = ({ timePerRound, id }) => {
   return (
-    <div className=" bg-gray-800 rounded-3xl p-6 pb-8 text-center">
+    <div id={`${id}`} className=" bg-gray-800 rounded-3xl p-6 pb-8 text-center">
       <h2 className="text-center text-2xl text-orange-300 font-bold mb-6">
         Rounds Time
       </h2>

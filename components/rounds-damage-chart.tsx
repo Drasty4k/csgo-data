@@ -2,11 +2,12 @@ import { DamagePerRound } from "../types";
 
 type Props = {
   damagePerRound: DamagePerRound[];
+  id?: string;
 };
 
-const RoundsDamageChart: React.FC<Props> = ({ damagePerRound }) => {
+const RoundsDamageChart: React.FC<Props> = ({ damagePerRound, id }) => {
   return (
-    <div className="bg-gray-800 rounded-3xl p-6 pb-8 text-center">
+    <div id={`${id}`}  className="bg-gray-800 rounded-3xl p-6 pb-8 text-center">
       <h2 className="text-center text-2xl text-orange-300 font-bold mb-6">
         Rounds Damage
       </h2>

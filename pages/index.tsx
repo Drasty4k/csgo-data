@@ -26,16 +26,19 @@ export default function Home() {
         <div className="flex justify-between">
           <Card
             title="Average Round Time"
+            idToScroll="RoundsTime"
             data={millisToMinutesAndSeconds(
               String(data.timeInfo.averageRoundTime)
             )}
           />
           <Card
             title="Total Kills"
+            idToScroll="RoundsKills"
             data={String(data.killsInfo.totalKillsOfMatch)}
           />
           <Card
             title="Total bomb planted"
+            idToScroll="SitesBomb"
             data={String(data?.bombInfo.totalBombPlantedOfMatch)}
           />
           <Card
@@ -44,13 +47,14 @@ export default function Home() {
           />
           <Card
             title="Total Damage Done"
+            idToScroll="RoundsDamage"
             data={String(data.damageInfo.totalDamageOfMatch)}
           />
         </div>
-        <RoundsTimeChart timePerRound={data.timeInfo.timePerRound} />
-        <RoundsKillsChart killsPerRound={data.killsInfo.killsPerRound} />
-        <SitesBombChart bombsPlanted={data.bombInfo.bombPlantedPerSite} />
-        <RoundsDamageChart damagePerRound={data.damageInfo.damagePerRound} />
+        <RoundsTimeChart id="RoundsTime" timePerRound={data.timeInfo.timePerRound} />
+        <RoundsKillsChart id="RoundsKills" killsPerRound={data.killsInfo.killsPerRound} />
+        <SitesBombChart id="SitesBomb" bombsPlanted={data.bombInfo.bombPlantedPerSite} />
+        <RoundsDamageChart id="RoundsDamage" damagePerRound={data.damageInfo.damagePerRound} />
         {data.allData!.length > 0 &&
           data.allData!.map((element, index) => (
             <p key={index}>
