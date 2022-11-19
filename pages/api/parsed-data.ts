@@ -21,10 +21,21 @@ import {
 import { getTotalMoneySpentOfMatch } from "../../utils/moneyStats";
 import { ResponseData } from "../../types";
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<ResponseData>) {
-  const data = readFileSync(path.join(__dirname, "data.txt"))
-    .toString()
-    .split("\n");
+const getData = async () => {
+  const response = await fetch(
+    "https://blast-recruiting.s3.eu-central-1.amazonaws.com/NAVIvsVitaGF-Nuke.txt"
+  );
+
+  const data = await response.text();
+
+  return data.toString().split("\n");
+};
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) {
+  const data = await getData();
 
   const parsedData = dataWithRoundsOnly(data);
 
