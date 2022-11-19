@@ -2,7 +2,7 @@ import { Data, roundsInfo } from "../types";
 
 export let dayOfMatch: string;
 
-export const parseData = (data: string[]) => {
+const parseData = (data: string[]) => {
   const parsedData: Data[] = [];
 
   data.map((element) => {
@@ -93,7 +93,7 @@ const findMatchStartIndex = (parsedData: Data[]) => {
   return firstRoundIndex;
 };
 
-export const getTeams = (parsedData: Data[]) => {
+const getTeams = (parsedData: Data[]) => {
   let firstTeam: string = "";
   let secondTeam: string = "";
 

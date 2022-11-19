@@ -1,7 +1,7 @@
 import { DamagePerRound, Data } from "../types";
 import { findStartAndEndRoundsIndex } from "./data";
 
-export const getDamageDonePerRound = (parsedData: Data[]) => {
+const getDamageDonePerRound = (parsedData: Data[]) => {
   const damageDonePerRound: DamagePerRound[] = [];
 
   const roundsIndex = findStartAndEndRoundsIndex(parsedData);
@@ -30,7 +30,7 @@ export const getDamageDonePerRound = (parsedData: Data[]) => {
   return damageDonePerRound;
 };
 
-export const getTotalDamageOfMatch = (parsedData: Data[]) => {
+const getTotalDamageOfMatch = (parsedData: Data[]) => {
   return getDamageDonePerRound(parsedData).reduce(
     (partialSum, a) => partialSum + a.totalDamagePerRound,
     0

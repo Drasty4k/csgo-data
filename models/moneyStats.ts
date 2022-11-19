@@ -33,7 +33,7 @@ import { Data } from "../types";
 //   return moneySpentPerRound;
 // };
 
-export const getTotalMoneySpentOfMatch = (parsedData: Data[]) => {
+const getTotalMoneySpentOfMatch = (parsedData: Data[]) => {
   let totalMoneySpent = 0;
 
   parsedData.map(({ info }) => {

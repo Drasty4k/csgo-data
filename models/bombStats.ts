@@ -20,7 +20,7 @@ export const getTotalBombPlantedPerSite = (parsedData: Data[]) => {
   return plantsPerSite;
 };
 
-export const getTotalBombPlantedOnMatch = (parsedData: Data[]) => {
+const getTotalBombPlantedOnMatch = (parsedData: Data[]) => {
   return Object.values(getTotalBombPlantedPerSite(parsedData)).reduce(
     (partialSum, a) => partialSum + a,
     0
