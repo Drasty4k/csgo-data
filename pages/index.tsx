@@ -24,7 +24,7 @@ export default function Home() {
           <h1 className="text-[1.7rem] font-bold">{data.matchInfo.teams}</h1>
           <h3 className="text-l font-semibold">{data.matchInfo.dayOfMatch}</h3>
         </div>
-        <div className="flex justify-between">
+        <div className="space-x-10 lg:space-x-0 lg:flex justify-between flex-wrap">
           <Card
             title="Average Round Time"
             idToScroll="RoundsTime"
