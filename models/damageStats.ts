@@ -36,3 +36,13 @@ export const getTotalDamageOfMatch = (parsedData: Data[]) => {
     0
   );
 };
+
+export const getDamageInfo = (parsedData: Data[]) => {
+  const damagePerRound = getDamageDonePerRound(parsedData);
+  const totalDamageOfMatch = getTotalDamageOfMatch(parsedData);
+
+  return {
+    damagePerRound,
+    totalDamageOfMatch,
+  };
+};

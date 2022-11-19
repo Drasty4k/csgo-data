@@ -68,12 +68,6 @@ export default function Home() {
           id="RoundsDamage"
           damagePerRound={data.damageInfo.damagePerRound}
         />
-        {data.allData!.length > 0 &&
-          data.allData!.map((element, index) => (
-            <p key={index}>
-              {index} {element.info}
-            </p>
-          ))}
       </div>
       <ScrollArrow />
     </div>

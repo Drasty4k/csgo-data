@@ -1,5 +1,4 @@
 export type ResponseData = {
-  allData?: Data[];
   timeInfo: TimeInfo;
   matchInfo: MatchInfo;
   damageInfo: DamageInfo;

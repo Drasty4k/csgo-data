@@ -26,3 +26,13 @@ export const getTotalBombPlantedOnMatch = (parsedData: Data[]) => {
     0
   );
 };
+
+export const getBombInfo = (parsedData: Data[]) => {
+  const bombPlantedPerSite = getTotalBombPlantedPerSite(parsedData);
+  const totalBombPlantedOfMatch = getTotalBombPlantedOnMatch(parsedData);
+
+  return {
+    bombPlantedPerSite,
+    totalBombPlantedOfMatch,
+  };
+};

@@ -1,20 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { readFileSync } from "fs";
-import path from "path";
 
-import {
-  dataWithRoundsOnly,
-  dayOfMatch,
-  getTeams,
-  parseData,
-} from "../../models/data";
+import { dataWithRoundsOnly, dayOfMatch, getTeams } from "../../models/data";
 import { getRoundTimeStats } from "../../models/roundTimeStats";
 import {
   getDamageDonePerRound,
+  getDamageInfo,
   getTotalDamageOfMatch,
 } from "../../models/damageStats";
 import { getKillsInfo, getTotalKillsOfMatch } from "../../models/killStats";
 import {
+  getBombInfo,
   getTotalBombPlantedOnMatch,
   getTotalBombPlantedPerSite,
 } from "../../models/bombStats";
@@ -39,8 +34,6 @@ export default async function handler(
 
   const parsedData = dataWithRoundsOnly(data);
 
-  const timeInfo = getRoundTimeStats(parsedData);
-
   const teams = getTeams(parsedData);
 
   const matchInfo = {
@@ -48,33 +41,19 @@ export default async function handler(
     dayOfMatch,
   };
 
-  const damagePerRound = getDamageDonePerRound(parsedData);
-  const totalDamageOfMatch = getTotalDamageOfMatch(parsedData);
-  const damageInfo = {
-    damagePerRound,
-    totalDamageOfMatch,
-  };
+  const timeInfo = getRoundTimeStats(parsedData);
 
-  const killsPerRound = getKillsInfo(parsedData);
-  const totalKillsOfMatch = getTotalKillsOfMatch(parsedData);
-  const killsInfo = {
-    killsPerRound,
-    totalKillsOfMatch,
-  };
+  const damageInfo = getDamageInfo(parsedData);
 
-  const bombPlantedPerSite = getTotalBombPlantedPerSite(parsedData);
-  const totalBombPlantedOfMatch = getTotalBombPlantedOnMatch(parsedData);
-  const bombInfo = {
-    bombPlantedPerSite,
-    totalBombPlantedOfMatch,
-  };
+  const killsInfo = getKillsInfo(parsedData);
+
+  const bombInfo = getBombInfo(parsedData);
 
   const totalMoneySpentOfMatch = getTotalMoneySpentOfMatch(parsedData);
 
   res.status(200).json({
-    allData: parsedData,
-    timeInfo,
     matchInfo,
+    timeInfo,
     damageInfo,
     killsInfo,
     bombInfo,
