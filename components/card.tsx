@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from "./icons";
+import { ArrowDownIcon, XMarkIcon } from "./icons";
 
 type Props = {
   title: string;
@@ -12,12 +12,21 @@ const Card: React.FC<Props> = ({ title, data, idToScroll }) => {
       <div className="group p-10 bg-gray-800 rounded-3xl text-center space-y-3 hover:bg-[#372f1f] transition hover:cursor-pointer">
         <h3 className="text-2xl text-orange-300 font-bold">{title}</h3>
         <p className="font-bold">{data}</p>
-        <ArrowDownIcon
-          strokeWidth={2.5}
-          width={27}
-          height={27}
-          className="relative top-5 mx-auto group-hover:animate-bounce transition"
-        />
+        {idToScroll ? (
+          <ArrowDownIcon
+            strokeWidth={2.5}
+            width={27}
+            height={27}
+            className="relative top-5 mx-auto group-hover:animate-bounce transition"
+          />
+        ) : (
+          <XMarkIcon
+            strokeWidth={2.5}
+            width={27}
+            height={27}
+            className="relative top-5 mx-auto"
+          />
+        )}
       </div>
     </a>
   );

@@ -42,19 +42,31 @@ export default function Home() {
             data={String(data?.bombInfo.totalBombPlantedOfMatch)}
           />
           <Card
-            title="Total Money Spent"
-            data={`~${String(data?.totalMoneySpentOfMatch)} $`}
-          />
-          <Card
             title="Total Damage Done"
             idToScroll="RoundsDamage"
             data={String(data.damageInfo.totalDamageOfMatch)}
           />
+          <Card
+            title="Total Money Spent"
+            data={`~${String(data?.totalMoneySpentOfMatch)} $`}
+          />
         </div>
-        <RoundsTimeChart id="RoundsTime" timePerRound={data.timeInfo.timePerRound} />
-        <RoundsKillsChart id="RoundsKills" killsPerRound={data.killsInfo.killsPerRound} />
-        <SitesBombChart id="SitesBomb" bombsPlanted={data.bombInfo.bombPlantedPerSite} />
-        <RoundsDamageChart id="RoundsDamage" damagePerRound={data.damageInfo.damagePerRound} />
+        <RoundsTimeChart
+          id="RoundsTime"
+          timePerRound={data.timeInfo.timePerRound}
+        />
+        <RoundsKillsChart
+          id="RoundsKills"
+          killsPerRound={data.killsInfo.killsPerRound}
+        />
+        <SitesBombChart
+          id="SitesBomb"
+          bombsPlanted={data.bombInfo.bombPlantedPerSite}
+        />
+        <RoundsDamageChart
+          id="RoundsDamage"
+          damagePerRound={data.damageInfo.damagePerRound}
+        />
         {data.allData!.length > 0 &&
           data.allData!.map((element, index) => (
             <p key={index}>
