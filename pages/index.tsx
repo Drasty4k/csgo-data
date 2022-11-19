@@ -7,11 +7,16 @@ import RoundsKillsChart from "../components/rounds-kills-chart";
 import SitesBombChart from "../components/sites-bomb-chart";
 import { ResponseData } from "../types";
 import ScrollArrow from "../components/scroll-arrow";
+import Error from "../components/error";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
 
 export default function Home() {
-  const { data } = useSWR<ResponseData>("/api/parsed-data", fetcher);
+  const { data, error } = useSWR<ResponseData>("/api/parsed-data", fetcher);
+
+  if (error) {
+    return <Error />;
+  }
 
   if (!data) {
     return <Loader />;
